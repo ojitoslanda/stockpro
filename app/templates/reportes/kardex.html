@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block title %}Kardex - StockPro{% endblock %}
+{% block content %}
+
+<h4>Kardex de movimientos</h4>
+<a href="/reportes" class="btn btn-sm btn-outline-secondary mb-3">← Volver a reportes</a>
+
+<form method="get" action="/reportes/kardex" class="row g-2 mb-3">
+    <div class="col-md-4">
+        <select name="producto_id" class="form-select" onchange="this.form.submit()">
+            <option value="">Todos los productos</option>
+            {% for p in productos %}
+            <option value="{{ p.id }}" {% if producto_id == p.id %}selected{% endif %}>
+                {{ p.codigo }} - {{ p.nombre }}
+            </option>
+            {% endfor %}
+        </select>
+    </div>
+</form>
+
+<table class="table table-striped bg-white">
+    <thead class="table-dark">
+        <tr>
+            <th>Fecha</th>
+            <th>Código</th>
+            <th>Producto</th>
+            <th>Tipo</th>
+            <th>Cantidad</th>
+            <th>Motivo</th>
+            <th>Usuario</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for m in movimientos %}
+        <tr>
+            <td>{{ m.fecha.strftime("%d/%m/%Y %H:%M") }}</td>
+            <td>{{ m.codigo }}</td>
+            <td>{{ m.producto }}</td>
+            <td>
+                {% if m.tipo == "entrada" %}
+                    <span class="badge bg-success">Entrada</span>
+                {% else %}
+                    <span class="badge bg-danger">Salida</span>
+                {% endif %}
+            </td>
+            <td>{{ m.cantidad }}</td>
+            <td>{{ m.motivo or "-" }}</td>
+            <td>{{ m.usuario or "-" }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

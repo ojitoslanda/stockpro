@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}Valorizado - StockPro{% endblock %}
+{% block content %}
+
+<h4>Valorizado de inventario</h4>
+<a href="/reportes" class="btn btn-sm btn-outline-secondary mb-3">← Volver a reportes</a>
+
+<div class="alert alert-primary">
+    <strong>Valor total del inventario:</strong> S/ {{ "%.2f"|format(total_general) }}
+</div>
+
+<table class="table table-striped bg-white">
+    <thead class="table-dark">
+        <tr>
+            <th>Categoría</th>
+            <th>Unidades totales</th>
+            <th>Valor total</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for c in por_categoria %}
+        <tr>
+            <td>{{ c.categoria or "Sin categoría" }}</td>
+            <td>{{ c.total_unidades }}</td>
+            <td>S/ {{ "%.2f"|format(c.valor_total) }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

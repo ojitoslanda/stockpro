@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}Stock - StockPro{% endblock %}
+{% block content %}
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h4>Stock de productos</h4>
+    <a href="/stock/movimiento" class="btn btn-primary">Registrar movimiento</a>
+</div>
+
+<table class="table table-striped table-hover bg-white">
+    <thead class="table-dark">
+        <tr>
+            <th>Código</th>
+            <th>Producto</th>
+            <th>Categoría</th>
+            <th>Stock actual</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for p in productos %}
+        <tr class="{% if p.stock_actual <= 5 %}table-warning{% endif %}">
+            <td>{{ p.codigo }}</td>
+            <td>{{ p.nombre }}</td>
+            <td>{{ p.categoria or "-" }}</td>
+            <td><strong>{{ p.stock_actual }}</strong></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<small class="text-muted">Resaltado en amarillo: productos con stock bajo (< 5 unidades)</small>
+{% endblock %}

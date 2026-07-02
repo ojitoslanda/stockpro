@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block title %}Reportes - StockPro{% endblock %}
+{% block content %}
+
+<h4 class="mb-4">Reportes</h4>
+
+<div class="row g-3">
+    <div class="col-md-4">
+        <div class="card h-100">
+            <div class="card-body">
+                <h5 class="card-title">Stock bajo</h5>
+                <p class="card-text text-muted">Productos con inventario por debajo del umbral mínimo.</p>
+                <a href="/reportes/stock-bajo" class="btn btn-outline-primary">Ver reporte</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card h-100">
+            <div class="card-body">
+                <h5 class="card-title">Kardex</h5>
+                <p class="card-text text-muted">Historial de todas las entradas y salidas de stock.</p>
+                <a href="/reportes/kardex" class="btn btn-outline-primary">Ver reporte</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card h-100">
+            <div class="card-body">
+                <h5 class="card-title">Valorizado</h5>
+                <p class="card-text text-muted">Valor total del inventario actual, por categoría.</p>
+                <a href="/reportes/valorizado" class="btn btn-outline-primary">Ver reporte</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
