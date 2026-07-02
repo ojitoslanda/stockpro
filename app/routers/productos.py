@@ -18,6 +18,7 @@ def listar_productos(request: Request):
                p.precio, p.stock_actual, p.activo
         FROM productos p
         LEFT JOIN categorias c ON p.categoria_id = c.id
+        WHERE p.activo = TRUE
         ORDER BY p.nombre
     """)
     productos = cursor.fetchall()
