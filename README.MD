@@ -133,6 +133,7 @@ Una vez hecho esto, puedes borrar `generar_hash.py` — ya cumplió su función.
 Con el entorno virtual activo, desde la raíz del proyecto:
 
 ```bash
+venv\Scripts\activate
 uvicorn app.main:app --reload
 ```
 
